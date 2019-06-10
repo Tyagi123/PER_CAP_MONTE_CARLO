@@ -9,30 +9,23 @@ public class MonteCarloService {
     /**
      * Method to calculate investment
      *
-     * @param initialInvestment initialInvestment
-     * @param installment installment per cycle
-     * @param inflation inflation
-     * @param years years
-     * @param mean mean
-     * @param stdDev stdDev
-     * @param rounds rounds
-     * @return best amd worst cases
+     * @param request MonteCarloRequest
+     * @return MonteCarloResponse
      */
-    public MonteCarloModel calculate(double initialInvestment,double installment,double inflation,int years,double mean,
-                                     double stdDev,int rounds) {
-        double[] investmentValues = new double[rounds];
-        for (int i = 0; i < rounds; i++) {
-            double investment = initialInvestment;
-            for (int j = 0; j < years; j++) {
-                investment = investment * (1 + (new Random().nextGaussian()*stdDev+mean)) * (1 - inflation);
-                investment=investment+installment;
+    public MonteCarloResponse calculate(MonteCarloRequest request) {
+        double[] investmentValues = new double[request.getRound()];
+        for (int i = 0; i < request.getRound(); i++) {
+            double investment = request.getInitialInvestment();
+            for (int j = 0; j < request.getYears(); j++) {
+                investment = investment * (1 + (new Random().nextGaussian() * request.getStdDev() + request.getMean())) * (1 - request.getInflation());
+                investment = investment + request.getInstallment();
 
             }
             investmentValues[i] = investment;
         }
 
         double[] values=percentiles(investmentValues,.90,.10);
-       return new MonteCarloModel(values[0], values[1]);
+        return new MonteCarloResponse(values[0], values[1]);
     }
 
     /**

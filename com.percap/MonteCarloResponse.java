@@ -1,7 +1,7 @@
 /**
- * Pojo for MonteCarloModel
+ * Pojo for MonteCarloResponse
  */
-public class MonteCarloModel {
+public class MonteCarloResponse {
 
     private double bestCase;
 
@@ -13,7 +13,7 @@ public class MonteCarloModel {
      * @param bestCase best cases (90 to 100 percentile)
      * @param worstCase best cases (first 10 percentile)
      */
-    MonteCarloModel(double bestCase, double worstCase) {
+    MonteCarloResponse(double bestCase, double worstCase) {
         super();
         this.bestCase = bestCase;
         this.worstCase = worstCase;
