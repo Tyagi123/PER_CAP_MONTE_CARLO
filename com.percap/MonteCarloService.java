@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Class to calculate investment
@@ -23,25 +24,25 @@ public class MonteCarloService {
             }
             investmentValues[i] = investment;
         }
-
-        double[] values=percentiles(investmentValues,.90,.10);
+        double[] values = percentiles(investmentValues, .90, .10);
         return new MonteCarloResponse(values[0], values[1]);
     }
 
     /**
      * Method to calculate percentile
      *
-     * @param latencies array of forecasts
+     * @param investmentValues   array of forecasts
      * @param percentiles percentiles
-     * @return
+     * @return percentiles values
      */
-    public static double[] percentiles(double[] latencies, double... percentiles) {
-        Arrays.sort(latencies, 0, latencies.length);
+    public static double[] percentiles(double[] investmentValues, double... percentiles) {
+        Arrays.sort(investmentValues, 0, investmentValues.length);
         double[] values = new double[percentiles.length];
         for (int i = 0; i < percentiles.length; i++) {
-            int index = (int) (percentiles[i] * latencies.length);
-            values[i] = latencies[index];
+            int index = (int) (percentiles[i] * investmentValues.length);
+            values[i] = investmentValues[index];
         }
         return values;
     }
+
 }

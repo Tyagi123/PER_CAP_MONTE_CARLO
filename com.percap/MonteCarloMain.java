@@ -1,5 +1,6 @@
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Main class
@@ -7,7 +8,7 @@ import java.util.Locale;
 public class MonteCarloMain {
 
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         MonteCarloService monteCarlo = new MonteCarloService();
         MonteCarloResponse monteCarloModel1 = monteCarlo.calculate(new MonteCarloRequest(100000, 0, 0.035,
                 20, 0.094324, 0.15675, 10000));

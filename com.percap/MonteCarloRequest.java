@@ -14,8 +14,10 @@ public class MonteCarloRequest {
 
     private int round;
 
+    private double interestRate;
+
     /**
-     * Parametrized constructor
+     * Parametrized constructor without interestRate
      *
      * @param initialInvestment initialInvestment
      * @param installment       installment
@@ -34,6 +36,28 @@ public class MonteCarloRequest {
         this.mean = mean;
         this.stdDev = stdDev;
         this.round = round;
+    }
+
+    /**
+     * Parametrized constructor without inflation
+     *
+     * @param initialInvestment initialInvestment
+     * @param installment       installment
+     * @param years             years
+     * @param mean              mean
+     * @param stdDev            stdDev
+     * @param round             round
+     */
+    public MonteCarloRequest(double initialInvestment, double installment, int years, double mean, double stdDev,
+                             int round,double interestRate) {
+        super();
+        this.initialInvestment = initialInvestment;
+        this.installment = installment;
+        this.years = years;
+        this.mean = mean;
+        this.stdDev = stdDev;
+        this.round = round;
+        this.interestRate=interestRate;
     }
 
     /**
@@ -160,5 +184,23 @@ public class MonteCarloRequest {
      */
     public void setRound(int round) {
         this.round = round;
+    }
+
+    /**
+     * Getter method for interestRate
+     *
+     * @return interestRate
+     */
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    /**
+     * Setter method for interestRate
+     *
+     * @param interestRate interestRate
+     */
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 }
